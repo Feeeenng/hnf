@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <!-- 页面标题 -->
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+
+        {% block styles %}  <!-- 样式区 -->
+            <link rel="stylesheet" charset="utf-8" type="text/css"
+            href="{{ url_for('static', filename='css/base/main.css') }}">
+            <link rel="stylesheet" charset="utf-8" type="text/css"
+            href="https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.css">
+        {% endblock %}
+    </head>
+
+    <body class="base-body">
+        <div class="ui container">
+            {% block navigation %}  <!-- 导航区 -->
+                {% if current_user.is_authenticated %}
+
+                    <div class="ui mini menu">
+                        <a class="header item">
+                            Hnf
+                        </a>
+                        <a class="item">
+                            <i class="home icon"></i>首页
+                        </a>
+                        <a class="item">
+                            <i class="user icon"></i>个人
+                        </a>
+                        <a class="item">
+                            <i class="mail icon"></i>消息
+                        </a>
+                        <a class="item">
+                            <i class="users icon"></i>好友
+                        </a>
+                        <div class="right menu">
+                            <div class="ui transparent left icon input">
+                                <input placeholder="搜索..." type="text" maxlength="20" size="20">
+                                <i class="search icon"></i>
+                            </div>
+                            <a class="item">
+                                <div class="ui teal button"><i class="sign out icon"></i>注销</div>
+                            </a>
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% endblock %}
+        </div>
+
+        {% block content %}  <!-- 内容区 -->
+        {% endblock %}
+
+        <footer>
+            {% block footer %}  <!-- 页脚区 -->
+            {% endblock %}
+        </footer>
+
+        {% block scripts %}  <!-- js脚本区 -->
+            <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

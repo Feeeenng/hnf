@@ -1,0 +1,16 @@
+flask
+flask-login
+flask-cache
+flask-socketio
+flask-principal
+flask-apscheduler
+flask-sqlalchemy
+mongoengine
+pytz
+rsa
+requests
+qrcode
+redis
+elasticsearch-dsl
+celery==3.1.18
+# pillow

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}hnf|登录{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" charset="utf-8" type="text/css" href="{{ url_for('static', filename='css/auth/register.css') }}">
+{% endblock %}
+
+{% block content %}  <!-- 内容区 -->
+
+    <div class="ui middle aligned left aligned grid">
+        <div class="six wide column"></div>
+        <div class="four wide column">
+            <form class="ui form">
+                <div class="ui stacked segment" id="register-box">
+                    <a class="ui teal ribbon label" style="bottom: 5px">用户注册</a>
+                    <a class="ui teal right corner label" href="/login" title="登录">
+                        <i class="share icon" style="cursor: pointer"></i>
+                    </a>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input name="username" placeholder="用户名" type="text" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input name="password" placeholder="密码" type="password" maxlength="16" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input name="confirm" placeholder="重复密码" type="password" maxlength="16" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="mail icon"></i>
+                            <input name="email" placeholder="邮箱" type="email" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="write square icon"></i>
+                            <input name="nickname" placeholder="昵称" type="text" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <input name="gender" type="hidden">
+                        <div class="ui floating labeled icon dropdown button gender">
+                            <i class="filter icon"></i>
+                            <span class="text">性别</span>
+                            <div class="menu">
+                                <div class="item">
+                                    男
+                                </div>
+                                <div class="item">
+                                    女
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui teal fluid animated fade submit button" tabindex="0" id="register">
+                        <div class="visible content">注册</div>
+                        <div class="hidden content">
+                            <i class="edit icon"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div class="six wide column"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}  <!-- js脚本区 -->
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/auth/register.js') }}"></script>
+{% endblock %}

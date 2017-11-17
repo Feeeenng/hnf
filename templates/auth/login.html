@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}hnf|登录{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" charset="utf-8" type="text/css" href="{{ url_for('static', filename='css/auth/login.css') }}">
+{% endblock %}
+
+{% block content %}  <!-- 内容区 -->
+
+    <div class="ui middle aligned left aligned grid">
+        <div class="six wide column"></div>
+        <div class="four wide column">
+            <form class="ui form">
+                <div class="ui stacked segment" id="login-box">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input name="username" placeholder="用户名" type="text" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input name="password" placeholder="密码" type="password" maxlength="16" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui slider checkbox remember">
+                            <label>记住我</label>
+                            <input type="checkbox" name="remember">
+                        </div>
+                    </div>
+                    <div class="ui fluid buttons">
+                        <div class="ui teal animated fade submit button" tabindex="0" id="login">
+                            <div class="visible content">登录</div>
+                            <div class="hidden content">
+                                <i class="sign in icon"></i>
+                            </div>
+                        </div>
+                        <div class="or"></div>
+                        <div class="ui animated fade button" tabindex="0" id="register-href">
+                            <div class="visible content">注册</div>
+                            <div class="hidden content">
+                                <i class="add icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="six wide column"></div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}  <!-- js脚本区 -->
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/auth/login.js') }}"></script>
+{% endblock %}
