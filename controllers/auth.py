@@ -10,6 +10,7 @@ from utils.regex_utils import regex_password, regex_email, regex_nickname, regex
 from utils.token_utils import confirm_token, generate_confirmation_token, generate_captcha
 from utils.mail_utils import Email
 from utils.datetime_utils import timedelta
+from constants import MALE, FEMALE
 
 instance = Blueprint('auth', __name__)
 
@@ -142,7 +143,7 @@ def check_register_params(username, password, confirm, nickname, email, gender):
         return False, '账户【{0}】已存在'.format(username)
 
     if not regex_password(password):
-        return False, '密码是8-16位字母和数字的组合'
+        return False, '密码是6-20位字母和数字的组合'
 
     if password != confirm:
         return False, '两次输入的密码不一致'
@@ -160,6 +161,9 @@ def check_register_params(username, password, confirm, nickname, email, gender):
     user = User.get_user_by_email(email)
     if user:
         return False, '邮箱【{0}】已被使用'.format(email)
+
+    if gender not in [MALE, FEMALE]:
+        return False, '请选择性别'
 
     return True, None
 

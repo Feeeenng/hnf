@@ -9,7 +9,11 @@ function hideMessage(obj) {
     });
 }
 
-function showMessage(category, msg) {
+function showMessage(category, msg, duration) {
+    if(!duration){
+        duration = 3000;  // ms
+    }
+
     var content = '';
     if(category == 'error') {
         content = '<div class="ui negative floating message" hidden><i class="close icon" onclick="hideMessage(this)"></i>' +
@@ -44,9 +48,14 @@ function showMessage(category, msg) {
                             }
                         }
                     });
-                }, 3000);
+                }, duration);
             }
         })
     }
 }
 /////////////////////////////消息提示 end
+
+// 跳转url
+function hrefUrl(url) {
+    location.href = url;
+}

@@ -12,7 +12,7 @@
     <div class="ui middle aligned left aligned grid">
         <div class="six wide column"></div>
         <div class="four wide column">
-            <form class="ui form">
+            <form class="ui form" id="register-form" action="{{ request.url }}">
                 <div class="ui stacked segment" id="register-box">
                     <a class="ui teal ribbon label" style="bottom: 5px">用户注册</a>
                     <a class="ui teal right corner label" href="/login" title="登录">
@@ -49,21 +49,21 @@
                         </div>
                     </div>
                     <div class="field">
-                        <input name="gender" type="hidden">
+                        <input name="gender" type="hidden" id="gender">
                         <div class="ui floating labeled icon dropdown button gender">
                             <i class="filter icon"></i>
-                            <span class="text">性别</span>
+                            <div class="default text">性别</div>
                             <div class="menu">
-                                <div class="item">
+                                <div class="item" data-value="male" data-text="男">
                                     男
                                 </div>
-                                <div class="item">
+                                <div class="item" data-value="female" data-text="女">
                                     女
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="ui teal fluid animated fade submit button" tabindex="0" id="register">
+                    <div class="ui teal fluid animated fade button" id="register">
                         <div class="visible content">提交</div>
                         <div class="hidden content">
                             <i class="edit icon"></i>

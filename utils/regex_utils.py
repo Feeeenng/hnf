@@ -34,13 +34,13 @@ def regex_nickname(nickname):
 
 def regex_password(password):
     """
-    密码的正则，规则：必须是数字和英文字母的组合，长度要在8到16位
+    密码的正则，规则：必须是数字和英文字母的组合，长度要在6到20位
 
     :param password:
     :return:
     """
 
-    p = re.compile(r'^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{8,16}$')
+    p = re.compile(r'^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z_]{6,20}$')
     if re.match(p, password):
         return True
     return False
