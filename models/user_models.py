@@ -24,9 +24,6 @@ class User(UserMixin, BaseDocument):
     nickname = StringField(required=True)  # 昵称
     email = EmailField(default=None, unique=True)  # 联系邮箱
     gender = StringField(choices=GENDERS)  # 性别
-    sign_in_ip = StringField(default=None)  # 登录IP
-    sign_in_at = DateTimeField(default=None)  # 登录时间
-    sign_out_at = DateTimeField(default=None)  # 注销时间
     roles = ListField(StringField(choices=ROLES, default=MEMBER), default=[])  # 角色
     privileges = ListField(IntField(), default=None)  # 权限
 
@@ -48,20 +45,22 @@ class User(UserMixin, BaseDocument):
     def get_user_by_email(cls, email):
         return cls.objects(email=email).first()
 
+    @classmethod
+    def register(cls, username, password, nickname, email, gender):
+        user = cls()
+        user.username = username
+        user.password = MD5(password, salt=conf.SECRET_KEY).md5_content
+        user.nickname = nickname
+        user.email = email
+        user.gender = gender
+        user.save()
+
     def validate_password(self, password):
         return MD5(password, salt=conf.SECRET_KEY).equal(self.password)
 
     def as_dict(self):
         dic = dict(self.to_mongo())
         dic['gender_text'] = GENDERS_DICT.get(self.gender, '')
-        if self.sign_in_ip:
-            del dic['sign_in_ip']
-
-        if self.sign_in_at:
-            del dic['sign_in_at']
-
-        if self.sign_out_at:
-            del dic['sign_out_at']
 
         if self.roles:
             del dic['with_roles']

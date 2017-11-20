@@ -22,7 +22,7 @@ $('#register').click(function () {
         dataType: "json",
         success: function (ret) {
             if(ret.success){
-                showMessage('success', '注册成功,稍后自动跳转登录', 2000);
+                showMessage('success', '注册成功,稍后自动跳转登录界面...', 2000);
                 setTimeout(function () {
                     hrefUrl('/login');
                 }, 3000);

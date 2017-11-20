@@ -9,7 +9,7 @@ from models.user_models import User
 from utils.regex_utils import regex_password, regex_email, regex_nickname, regex_username
 from utils.token_utils import confirm_token, generate_confirmation_token, generate_captcha
 from utils.mail_utils import Email
-from utils.datetime_utils import timedelta
+from utils.datetime_utils import timedelta, now_lambda
 from constants import MALE, FEMALE
 
 instance = Blueprint('auth', __name__)
@@ -36,7 +36,8 @@ def login():
 
     username = request.form.get('username', '').strip()
     password = request.form.get('password', '').strip()
-    remember = request.form.get('remember', False, type=int).strip()
+    remember = request.form.get('remember', '').strip()
+    remember = True if remember else False
 
     code, msg = check_login_params(username, password)
     if not code:
@@ -85,7 +86,7 @@ def logout():
         session.pop(key, None)
 
     identity_changed.send(current_app._get_current_object(), identity=AnonymousIdentity())
-    current_user.logout()
+    logout_user()
     return redirect(url_for('index.index'))
 
 
@@ -117,8 +118,7 @@ def register():
     if not code:
         return jsonify(success=False, error=msg)
 
-    user = User(username=username, password=password, nickname=nickname, email=email, gender=gender)
-    user.save()
+    User.register(username=username, password=password, nickname=nickname, email=email, gender=gender)
     return jsonify(success=True)
 
 

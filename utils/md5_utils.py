@@ -4,15 +4,13 @@ import hashlib
 
 
 class MD5:
-    def __init__(self, content):
+    def __init__(self, content, salt=None):
         self.content = content
-        self.md5_content = hashlib.md5(content).hexdigest()
+        self.salt = salt
 
-    def get_md5_content(self):
-        return self.md5_content
+    @property
+    def md5_content(self):
+        return hashlib.md5(self.content + self.salt or '').hexdigest()
 
-    def compare(self, cmp_content):
-        return True if cmp_content == self.md5_content else False
-
-    def add_salt(self, salt):
-        return hashlib.md5(self.content + salt).hexdigest()
+    def equal(self, cmp_content):
+        return cmp_content == self.md5_content

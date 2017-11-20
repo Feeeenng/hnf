@@ -12,7 +12,7 @@
     <div class="ui middle aligned left aligned grid">
         <div class="six wide column"></div>
         <div class="four wide column">
-            <form class="ui form">
+            <form class="ui form" id="login-form" action="{{ request.url }}">
                 <div class="ui stacked segment" id="login-box">
                     <div class="field">
                         <div class="ui left icon input">
@@ -29,11 +29,11 @@
                     <div class="field">
                         <div class="ui slider checkbox remember">
                             <label>记住我</label>
-                            <input type="checkbox" name="remember">
+                            <input type="checkbox" name="remember" value="remember">
                         </div>
                     </div>
                     <div class="ui fluid buttons">
-                        <div class="ui teal animated fade submit button" tabindex="0" id="login">
+                        <div class="ui teal animated fade button" tabindex="0" id="login">
                             <div class="visible content">登录</div>
                             <div class="hidden content">
                                 <i class="sign in icon"></i>
