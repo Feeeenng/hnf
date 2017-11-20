@@ -1,3 +1,4 @@
+///////////////////////////// 消息提示 start
 function hideMessage(obj) {
     var msgItem = $(obj).parent();
     msgItem.transition({
@@ -26,19 +27,26 @@ function showMessage(category, msg) {
         content = '';
     }
 
-    var last = $('#hnf-msg').prepend(content).children('div:first');
-    last.transition({
-        animation : 'drop in',
-        onComplete : function() {
-            setTimeout(function () {
-                last.transition({
-                    animation: 'fade out',
-                    duration: '1s',
-                    onComplete: function () {
-                        last.remove();
-                    }
-                });
-            }, 3000);
-        }
-    })
+    var hnfMsg = $('#hnf-msg');
+    var size = hnfMsg.children().length;
+    if(size < 5) {
+        var first = hnfMsg.prepend(content).children('div:first');
+        first.transition({
+            animation: 'drop in',
+            onComplete: function () {
+                setTimeout(function () {
+                    first.transition({
+                        animation: 'fade out',
+                        duration: '1s',
+                        onComplete: function () {
+                            if (first) {
+                                first.remove();
+                            }
+                        }
+                    });
+                }, 3000);
+            }
+        })
+    }
 }
+/////////////////////////////消息提示 end
