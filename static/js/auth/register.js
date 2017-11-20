@@ -8,7 +8,7 @@ $('.gender').dropdown({
 $('#register').click(function () {
     var data = {};
     var registerForm = $('#register-form');
-    var url = registerForm.attr('action');
+    var url = '/register';
     var d = registerForm.serializeArray();
     $.each(d, function() {
         data[this.name] = this.value;
