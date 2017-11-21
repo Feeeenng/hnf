@@ -5,17 +5,37 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" charset="utf-8" type="text/css" href="{{ url_for('static', filename='css/index/main.css') }}">
+
+    <link rel="stylesheet" charset="utf-8" type="text/css"
+          href="{{ url_for('static', filename='js/components/carousel/css/reset.css') }}">
+    <link rel="stylesheet" charset="utf-8" type="text/css"
+          href="{{ url_for('static', filename='js/components/carousel/css/slide.css') }}">
+    <link rel="stylesheet" charset="utf-8" type="text/css"
+          href="{{ url_for('static', filename='js/components/carousel/css/index.css') }}">
 {% endblock %}
 
 {% block content %}  <!-- 内容区 -->
     {% if current_user.is_authenticated %}
-
-    {% else %}
-
+        <div class="ui container">
+            {{ embed_html('components/carousel/index.html') }}
+        </div>
     {% endif %}
 {% endblock %}
 
 {% block scripts %}  <!-- js脚本区 -->
     {{ super() }}
     <script src="{{ url_for('static', filename='js/index/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/components/carousel/js/slide.min.js') }}"></script>
+    <script>
+        $(function(){
+            var  sliderDescArr=[],i=0,len=10;
+            for(;i<len;i++){
+                sliderDescArr.push(new Array(10).join(''+i));
+            }
+            $('#sliderDesc1').text(sliderDescArr[0]);
+            $('#slide2d').slideCarsousel({callbackFunc:function(index){
+                $('#sliderDesc1').text(sliderDescArr[index]);
+            }});
+        });
+    </script>
 {% endblock %}

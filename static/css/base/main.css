@@ -3,7 +3,7 @@
 }
 
 .hnf-msg {
-    position: fixed;
+    position: absolute;
     top: 30%;
     width: 20%;
     left: 40%;

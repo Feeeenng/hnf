@@ -1,3 +1,6 @@
 #login-box {
     top: 300px;
+    position: absolute;
+    left: 40%;
+    width: 20%;
 }
