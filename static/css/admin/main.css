@@ -1,0 +1,7 @@
+.hnf-msg {
+    position: absolute;
+    top: 30%;
+    width: 20%;
+    left: 40%;
+    z-index: 999
+}

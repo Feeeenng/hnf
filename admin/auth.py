@@ -7,6 +7,7 @@ from flask_principal import identity_changed, AnonymousIdentity, Identity, RoleN
 
 from models.user_models import User
 from utils.regex_utils import regex_username, regex_password
+from permissions import ADMIN
 
 instance = Blueprint('admin_auth', __name__)
 
@@ -23,7 +24,6 @@ def login():
 
     :param: username  账号
     :param: password  密码
-    :param: remember  记住
     :return:
     """
 
@@ -32,8 +32,6 @@ def login():
 
     username = request.form.get('username', '').strip()
     password = request.form.get('password', '').strip()
-    remember = request.form.get('remember', '').strip()
-    remember = True if remember else False
 
     code, msg = check_login_params(username, password)
     if not code:
@@ -46,7 +44,10 @@ def login():
     if not user.validate_password(password):
         return jsonify(success=False, error='账户或密码不正确')
 
-    login_user(user, remember)  # 登录
+    if ADMIN not in user.roles:
+        return jsonify(success=False, error='账户或密码不正确')
+
+    login_user(user, True)  # 登录
     identity_changed.send(current_app._get_current_object(), identity=Identity(user.id))  # 发送信号，载入用户权限
     return jsonify(success=True, url=request.args.get('next') or url_for('admin.index'))
 

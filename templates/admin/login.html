@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>hnf|后台登录</title>
-</head>
-<body>
-    后台登录
-</body>
-</html>
+{% extends "./base.html" %}
+
+{% block title %}hnf|主页{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" charset="utf-8" type="text/css" href="{{ url_for('static', filename='css/admin/login.css') }}">
+{% endblock %}
+
+{% block content %}  <!-- 内容区 -->
+    {% if not current_user.is_authenticated %}
+        <div class="ui container">
+            <div class="ui floating center aligned fluid segment black admin-login-box">
+                <h3 class="ui header">
+                    <div class="content">hnf后台</div>
+                </h3>
+                <form class="ui form" action="{{ request.url }}" id="admin-login-form">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input name="username" placeholder="用户名" type="text" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input name="password" placeholder="密码" type="password" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="ui animated fade fluid button" tabindex="0" id="admin-login">
+                        <div class="visible content">登录</div>
+                        <div class="hidden content">
+                            <i class="sign in icon"></i>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}  <!-- js脚本区 -->
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/admin/login.js') }}"></script>
+{% endblock %}

@@ -1,13 +1,6 @@
-$('.remember').checkbox();
-
-$('#register-href').click(function () {
-    hrefUrl('/register');
-});
-
-////////////////////////////提交注册表单
-$('#login').click(function () {
+$('#admin-login').click(function () {
     var data = {};
-    var loginForm = $('#login-form');
+    var loginForm = $('#admin-login-form');
     var url = loginForm.attr('action');
     var d = loginForm.serializeArray();
     $.each(d, function() {

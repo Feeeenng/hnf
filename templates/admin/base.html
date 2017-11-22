@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <!-- 页面标题 -->
+        <title>
+            {% block title %}{% endblock %}
+        </title>
 
-</body>
+        {% block styles %}  <!-- 样式区 -->
+            <link rel="stylesheet" charset="utf-8" type="text/css"
+            href="{{ url_for('static', filename='css/base/main.css') }}">
+            <link rel="stylesheet" charset="utf-8" type="text/css"
+            href="https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.css">
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block message %}  <!-- 消息区 -->
+            <div class="hnf-msg" id="hnf-msg">
+            </div>
+        {% endblock %}
+
+        {% block navigation %}  <!-- 导航区 -->
+            {% if current_user.is_authenticated %}
+
+            {% endif %}
+        {% endblock %}
+
+        {% block content %}  <!-- 内容区 -->
+        {% endblock %}
+
+        <footer>
+            {% block footer %}  <!-- 页脚区 -->
+            {% endblock %}
+        </footer>
+
+        {% block scripts %}  <!-- js脚本区 -->
+            <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.min.js"></script>
+            <script src="{{ url_for('static', filename='js/admin/main.js') }}"></script>
+        {% endblock %}
+    </body>
 </html>

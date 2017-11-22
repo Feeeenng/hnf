@@ -13,7 +13,6 @@ $('#register').click(function () {
     $.each(d, function() {
         data[this.name] = this.value;
     });
-    console.log(data);
     $.ajax({
         async : false,
         url: url,
