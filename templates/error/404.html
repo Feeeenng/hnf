@@ -10,7 +10,7 @@
         <h1 class="ui center aligned icon header">
             <i class="circular help circle icon"></i>
             404-not found
-            <div class="sub header">没有找到资源。<a href="/">返回主页<span id="seconds"></span></a></div>
+            <div class="sub header">没有找到资源。<a href="{{ source }}">返回主页<span id="seconds"></span></a></div>
         </h1>
     </div>
 {% endblock %}
@@ -20,7 +20,8 @@
     <script>
         $(document).ready(function () {
             var obj = $('#seconds');
-            countDown(9, '/', obj);
+            var source = '{{ source }}';
+            countDown(9, source, obj);
         });
     </script>
 {% endblock %}

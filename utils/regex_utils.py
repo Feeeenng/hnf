@@ -58,3 +58,8 @@ def regex_username(username):
     if re.match(p, username):
         return True
     return False
+
+
+def get_request_path_key_word(request_path):
+    p = re.compile(r'\/(\w+)')
+    return re.findall(p, request_path)

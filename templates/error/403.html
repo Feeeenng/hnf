@@ -10,7 +10,7 @@
         <h1 class="ui center aligned icon header">
             <i class="circular warning circle icon"></i>
             403-forbidden
-            <div class="sub header">您没有权限访问该页面。<a href="/">返回主页<span id="seconds"></span></a></div>
+            <div class="sub header">您没有权限访问该页面。<a href="{{ source }}">返回主页<span id="seconds"></span></a></div>
         </h1>
     </div>
 {% endblock %}
@@ -20,7 +20,8 @@
     <script>
         $(document).ready(function () {
             var obj = $('#seconds');
-            countDown(9, '/', obj);
+            var source = '{{ source }}';
+            countDown(9, source, obj);
         });
     </script>
 {% endblock %}
