@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}hnf|403-forbidden{% endblock %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block content %}  <!-- 内容区 -->
+    <div class="ui container center aligned http-exception">
+        <h1 class="ui center aligned icon header">
+            <i class="circular warning circle icon"></i>
+            403-forbidden
+            <div class="sub header">您没有权限访问该页面。<a href="/">返回主页<span id="seconds"></span></a></div>
+        </h1>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        $(document).ready(function () {
+            var obj = $('#seconds');
+            countDown(9, '/', obj);
+        });
+    </script>
+{% endblock %}

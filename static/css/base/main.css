@@ -9,3 +9,8 @@
     left: 40%;
     z-index: 999
 }
+
+.http-exception {
+    position: relative;
+    top: 30%;
+}

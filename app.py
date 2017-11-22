@@ -22,7 +22,10 @@ from scripts import JOBS
 cache = Cache()
 login_manager = LoginManager()
 # login_manager.session_protection = 'strong'
-login_manager.login_view = 'auth.login'
+login_manager.login_view = 'auth.login'  # blueprint_login_views里没有的话,默认其他蓝图走这里
+login_manager.blueprint_login_views = {
+    'admin': 'admin_auth.login'
+}
 login_manager.login_message = '用户需要登录后方可访问该页面'
 login_manager.login_message_category = 'warning'
 principal = Principal()
@@ -48,20 +51,21 @@ class RegexConverter(BaseConverter):
 
 def __config_blueprints(app):
     dir = os.path.dirname(__file__)
-    views_dir = os.path.join(dir, 'controllers')
-    views_files = glob.glob(os.path.join(views_dir, '*.py'))
-    for views_file in views_files:
-        basename = os.path.basename(views_file)
-        if basename == '__init__.py':
-            continue
+    for views_dir_name in ['controllers', 'admin']:
+        views_dir = os.path.join(dir, views_dir_name)
+        views_files = glob.glob(os.path.join(views_dir, '*.py'))
+        for views_file in views_files:
+            basename = os.path.basename(views_file)
+            if basename == '__init__.py':
+                continue
 
-        views_file_name = basename[:basename.rindex('.')]
-        module = __import__('controllers.{0}'.format(views_file_name), fromlist=['instance'])
-        if not hasattr(module, 'instance'):
-            continue
+            views_file_name = basename[:basename.rindex('.')]
+            module = __import__('{0}.{1}'.format(views_dir_name, views_file_name), fromlist=['instance'])
+            if not hasattr(module, 'instance'):
+                continue
 
-        instance = getattr(module, 'instance')
-        app.register_blueprint(instance)
+            instance = getattr(module, 'instance')
+            app.register_blueprint(instance)
 
 
 def create_app():

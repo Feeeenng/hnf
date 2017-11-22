@@ -1,16 +1,13 @@
 # -*- coding: utf8 -*-
 from __future__ import unicode_literals
 
-from flask import url_for, current_app, render_template
-from flask_login import UserMixin, login_user, logout_user
+from flask_login import UserMixin
 from mongoengine import StringField, ListField, IntField, DateTimeField, EmailField, EmbeddedDocument, \
     EmbeddedDocumentField, FloatField
 
 from . import BaseDocument, register_pre_save, conf
 from constants import GENDERS, GENDERS_DICT
 from permissions import ROLES, MEMBER
-from utils.datetime_utils import now_lambda
-from utils.regex_utils import regex_password, regex_email, regex_nickname
 from utils.md5_utils import MD5
 from utils.mail_utils import Email
 from utils.token_utils import generate_confirmation_token, confirm_token
@@ -53,6 +50,7 @@ class User(UserMixin, BaseDocument):
         user.nickname = nickname
         user.email = email
         user.gender = gender
+        user.roles = [MEMBER]
         user.save()
 
     def validate_password(self, password):

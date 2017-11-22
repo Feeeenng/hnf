@@ -59,3 +59,15 @@ function showMessage(category, msg, duration) {
 function hrefUrl(url) {
     location.href = url;
 }
+
+// 倒计时跳转
+function countDown(seconds, url, elm) {
+    elm.html('(' + seconds + 's)');
+    if(--seconds > 0) {
+        setTimeout(function () {
+            countDown(seconds, url, elm);
+        }, 1000);
+    } else {
+        hrefUrl(url);
+    }
+}

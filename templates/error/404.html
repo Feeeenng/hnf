@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}hnf|404-not found{% endblock %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block content %}  <!-- 内容区 -->
+    <div class="ui container center aligned http-exception">
+        <h1 class="ui center aligned icon header">
+            <i class="circular help circle icon"></i>
+            404-not found
+            <div class="sub header">没有找到资源。<a href="/">返回主页<span id="seconds"></span></a></div>
+        </h1>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        $(document).ready(function () {
+            var obj = $('#seconds');
+            countDown(9, '/', obj);
+        });
+    </script>
+{% endblock %}

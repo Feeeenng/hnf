@@ -15,9 +15,5 @@ def before_request():
 
 @instance.route('/test', methods=['GET'])
 def test():
-    u = User(name='hnf', age=25)
-    u.save()
-    ds = []
-    for us in User.fetch(name='hnf'):
-        ds.append(us.as_dict())
-    return jsonify(success=True, data=ds)
+    d = 1 / 0
+    return jsonify(success=True, data=d)

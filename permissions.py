@@ -9,15 +9,12 @@ from flask_principal import ActionNeed, RoleNeed, Permission
 # 角色
 MEMBER = 'MEMBER'
 ADMIN = 'ADMIN'
-SELLER = 'SELLER'
 ROLES = [
     (MEMBER, '用户'),
-    (SELLER, '卖家'),
     (ADMIN, '系统管理员')
 ]
 
 member_permission = Permission(RoleNeed(MEMBER))
-seller_permission = Permission(RoleNeed(SELLER))
 admin_permission = Permission(RoleNeed(ADMIN))
 # edit = Permission(ActionNeed())
 
