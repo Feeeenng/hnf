@@ -16,18 +16,15 @@
             </div>
             <div class="ui divider"></div>
 
-            {% block content_box %}
-                <div class="ui container admin-index-header">
-                    <h1 class="ui center aligned icon header">
-                        <i class="circular desktop icon"></i>
-                        您好，{{ current_user.nickname }}
-                        <div class="sub header">
-                            欢迎使用hnf后台管理系统
-                        </div>
-                    </h1>
-                </div>
-            {% endblock %}
-
+            <div class="ui container admin-index-header">
+                <h1 class="ui center aligned icon header">
+                    <i class="circular desktop icon"></i>
+                    您好，{{ current_user.nickname }}
+                    <div class="sub header">
+                        欢迎使用hnf后台管理系统
+                    </div>
+                </h1>
+            </div>
         </div>
     </div>
 {% endblock %}
