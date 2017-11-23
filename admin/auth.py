@@ -68,3 +68,20 @@ def check_login_params(username, password):
         return False, '密码是8-16位字母和数字的组合'
 
     return True, None
+
+
+@instance.route('/admin/logout', methods=['GET'])
+@login_required
+def logout():
+    """
+    注销
+
+    :return:
+    """
+
+    for key in ['identity.id', 'identity.auth_type']:
+        session.pop(key, None)
+
+    identity_changed.send(current_app._get_current_object(), identity=AnonymousIdentity())
+    logout_user()
+    return redirect(url_for('admin.index'))

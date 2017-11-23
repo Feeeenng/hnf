@@ -5,3 +5,11 @@
     left: 40%;
     z-index: 999
 }
+
+.base-body {
+    background-color: #DADADA;
+}
+
+.admin-content {
+    height: 800px;
+}

@@ -9,13 +9,13 @@
 
         {% block styles %}  <!-- 样式区 -->
             <link rel="stylesheet" charset="utf-8" type="text/css"
-            href="{{ url_for('static', filename='css/base/main.css') }}">
+            href="{{ url_for('static', filename='css/admin/main.css') }}">
             <link rel="stylesheet" charset="utf-8" type="text/css"
             href="https://cdn.bootcss.com/semantic-ui/2.2.13/semantic.css">
         {% endblock %}
     </head>
 
-    <body>
+    <body class="base-body">
         {% block message %}  <!-- 消息区 -->
             <div class="hnf-msg" id="hnf-msg">
             </div>
@@ -23,7 +23,52 @@
 
         {% block navigation %}  <!-- 导航区 -->
             {% if current_user.is_authenticated %}
+                <div class="ui container">
+                    <!-- admin的导航 -->
+                    <div class="ui mini menu">
+                        <a class="item active" href="/admin">
+                            <i class="home icon"></i>后台主页
+                        </a>
 
+                        <div class="ui dropdown item admin-mgmt-dropdown">
+                            <i class="settings icon"></i>
+                            管理
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a class="item">
+                                    <i class="users icon"></i>用户管理
+                                </a>
+                                <a class="item">
+                                    <i class="privacy icon"></i>权限管理
+                                </a>
+                                <a class="item">
+                                    <i class="mail icon"></i>邮件管理
+                                </a>
+                                <a class="item">
+                                    <i class="filter icon"></i>分类管理
+                                </a>
+                                <a class="item">
+                                    <i class="file icon"></i>文件管理
+                                </a>
+                                <a class="item">
+                                    <i class="dashboard icon"></i>日志管理
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="right menu">
+                            <div class="item">
+                                <a class="ui animated fluid black button" tabindex="0" href="/admin/logout">
+                                    <div class="visible content">注销</div>
+                                    <div class="hidden content">
+                                        <i class="sign out icon"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             {% endif %}
         {% endblock %}
 

@@ -1,3 +1,5 @@
+$('.admin-mgmt-dropdown').dropdown({on:'hover'});
+
 ///////////////////////////// 消息提示 start
 function hideMessage(obj) {
     var msgItem = $(obj).parent();
