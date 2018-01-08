@@ -31,6 +31,13 @@ class User(UserMixin, BaseDocument):
     }
 
     @classmethod
+    def get_username(cls, uid):
+        u = cls.objects(id=uid).first()
+        if u:
+            return u.nickname
+        return '-'
+
+    @classmethod
     def get_user_by_username(cls, username):
         return cls.objects(username=username).first()
 

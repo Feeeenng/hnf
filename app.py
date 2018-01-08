@@ -68,6 +68,20 @@ def __config_blueprints(app):
             app.register_blueprint(instance)
 
 
+def __config_events():
+    dir = os.path.dirname(__file__)
+    for dir_name in ['events']:
+        events_dir = os.path.join(dir, dir_name)
+        events_files = glob.glob(os.path.join(events_dir, '*.py'))
+        for events_file in events_files:
+            basename = os.path.basename(events_file)
+            if basename == '__init__.py':
+                continue
+
+            events_file_name = basename[:basename.rindex('.')]
+            module = __import__('{0}.{1}'.format(dir_name, events_file_name))
+
+
 def create_app():
     app = Flask(__name__)
     # 读配置文件
@@ -82,8 +96,8 @@ def create_app():
     login_manager.init_app(app)
     principal.init_app(app)
     sql_db.init_app(app)
-    scheduler.init_app(app)
     socketio.init_app(app)
+    scheduler.init_app(app)
     scheduler.start()
 
     # 防跨站式攻击
@@ -97,5 +111,8 @@ def create_app():
 
     # 蓝图注册
     __config_blueprints(app)
+
+    # 注册events
+    __config_events()
 
     return app

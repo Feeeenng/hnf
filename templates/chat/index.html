@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}hnf|聊天{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <style>
+        .title-pointer {
+            cursor: pointer;
+        }
+        .create-room-msg {
+            position: absolute;
+            top: 30%;
+            width: 60%;
+            left: 20%;
+            z-index: 999
+        }
+    </style>
+{% endblock %}
+
+{% block content %}  <!-- 内容区 -->
+    <div class="ui tiny modal" id="new_room_box"> <!-- 新建弹出层 -->
+        <div class="create-room-msg" id="create-room-msg">
+        </div>
+
+        <div class="header">创建房间</div>
+        <div class="content">
+
+            <form class="ui form basic segment" id="new-room-form">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="comment icon"></i>
+                        <input name="room_name" placeholder="房间名" type="text" maxlength="20" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <textarea name="desc" placeholder="描述" type="text" maxlength="256"></textarea>
+                </div>
+            </form>
+
+        </div>
+        <div class="actions">
+            <div class="ui teal approve button">创建</div>
+            <div class="ui cancel button">取消</div>
+        </div>
+    </div>
+
+    <div class="ui container">
+        <div class="ui segment">
+            <a class="ui blue ribbon label">房间列表</a>
+            <form class="ui vertical form segment" id="room-search-form">
+                <div class="fields">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="info icon"></i>
+                            <input name="room_id" placeholder="房间ID" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="comments icon"></i>
+                            <input name="room_name" placeholder="房间名" type="text">
+                        </div>
+                    </div>
+                    <div class="ui vertical animated fluid button" tabindex="0" id="room-search-btn">
+                        <div class="visible content">查找</div>
+                        <div class="hidden content">
+                            <i class="search icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <table class="ui black selectable center aligned table">
+                <thead>
+                    <tr>
+                        <th class="left aligned">
+                            <span class="title-pointer">所有房间<i class="chevron down icon"></i></span>
+                        </th>
+                        <th>
+                            <span class="title-pointer">创建人<i class="chevron down icon"></i></span>
+                        </th>
+                        <th>
+                            <span class="title-pointer">人数<i class="chevron down icon"></i></span>
+                        </th>
+                        <th>
+                            <span class="title-pointer">创建时间<i class="chevron down icon"></i></span>
+                        </th>
+                        <th>
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tab-list">
+                    <!-- 列表数据 -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="5">
+                            <div class="ui left floated pagination menu">
+                                <a class="icon item">
+                                    <i class="left chevron icon"></i>
+                                </a>
+                                <a class="item">1</a>
+                                <a class="item">2</a>
+                                <a class="item">3</a>
+                                <a class="item">4</a>
+                                <a class="icon item">
+                                    <i class="right chevron icon"></i>
+                                </a>
+                            </div>
+                            <button class="ui right floated right labeled icon button" id="new_room_btn">
+                                <i class="add icon"></i>
+                                创建房间
+                            </button>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/chat/main.js') }}"></script>
+{% endblock %}

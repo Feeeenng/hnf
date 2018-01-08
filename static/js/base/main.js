@@ -9,14 +9,18 @@ function hideMessage(obj) {
     });
 }
 
-function showMessage(category, msg, duration) {
+function showMessage(category, msg, duration, element_id) {
     if(!duration){
         duration = 3000;  // ms
     }
 
+    if(!element_id){
+        element_id = 'hnf-msg'
+    }
+
     var content = '';
     if(category == 'error') {
-        content = '<div class="ui negative floating message" hidden><i class="close icon" onclick="hideMessage(this)"></i>' +
+        content = '<div class="ui negative floating message" style="z-index: 10" hidden><i class="close icon" onclick="hideMessage(this)"></i>' +
             '<div class="header"><i class="remove circle icon"></i>' + msg + '</div></div>';
     } else if(category == 'info') {
         content = '<div class="ui info floating message" hidden><i class="close icon" onclick="hideMessage(this)"></i>' +
@@ -31,7 +35,7 @@ function showMessage(category, msg, duration) {
         content = '';
     }
 
-    var hnfMsg = $('#hnf-msg');
+    var hnfMsg = $('#' + element_id);
     var size = hnfMsg.children().length;
     if(size < 5) {
         var first = hnfMsg.prepend(content).children('div:first');
