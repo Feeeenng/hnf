@@ -60,8 +60,8 @@ class ProductionConfig(Config):
     EMAIL_SENDER = 'haner27@126.com'
 
     # celery配置
-    CELERY_BROKER_URL = 'redis://127.0.0.1:5000/1'
-    CELERY_RESULT_BACKEND = 'redis://127.0.0.1:5000/2'
+    CELERY_BROKER_URL = 'redis://127.0.0.1:6379/1'
+    CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/2'
 
 
 class DevelopmentConfig(Config):
@@ -98,8 +98,8 @@ class DevelopmentConfig(Config):
     EMAIL_SENDER = 'haner27@126.com'
 
     # celery配置
-    CELERY_BROKER_URL = 'redis://127.0.0.1:5000/1'
-    CELERY_RESULT_BACKEND = 'redis://127.0.0.1:5000/2'
+    CELERY_BROKER_URL = 'redis://127.0.0.1:6379/1'
+    CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/2'
 
 
 config = {
