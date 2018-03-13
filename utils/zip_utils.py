@@ -11,7 +11,7 @@ class Zip(object):
 
     def add_file(self, io, aname):
         if aname not in self.__zf.namelist():
-            self.__zf.writestr(aname, io.getvalue(), zipfile.ZIP_DEFLATED)
+            self.__zf.writestr(zipfile.ZipInfo(aname), io.getvalue(), zipfile.ZIP_DEFLATED)
             io.seek(0)
         return self
 
