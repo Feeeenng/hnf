@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 import os
 import glob
-from celery import Celery
+from celery import Celery, Task
 from kombu import Exchange, Queue
 
 
